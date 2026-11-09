@@ -1,0 +1,46 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  session:
+    jdbc:
+      initialize-schema: never
+
+  datasource:
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 10
+
+server:
+  servlet:
+    session:
+      cookie:
+        secure: true
+
+security:
+  csrf:
+    enabled: true
+
+logging:
+  level:
+    com.pharmacy.saas: INFO
+    org.springframework.security: WARN
+    org.springframework.session: WARN
+    org.hibernate.SQL: WARN
+    org.flywaydb: INFO
+  file:
+    name: /var/log/pharmacy-saas/pharmacy-saas.log
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
